@@ -1,0 +1,4 @@
+org.springframework.test.context.ContextCustomizerFactory = \
+    com.mycompany.ecommerceorder.config.\
+    SqlTestContainersSpringContextCustomizerFactory,com.mycompany.\
+    ecommerceorder.config.RedisTestContainersSpringContextCustomizerFactory

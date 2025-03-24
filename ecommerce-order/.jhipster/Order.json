@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20250321100122"
+  },
+  "clientRootFolder": "ecommerceOrder",
+  "databaseType": "sql",
+  "entityTableName": "jhi_order",
+  "fields": [
+    {
+      "fieldName": "customerId",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "orderStatus",
+      "fieldType": "status",
+      "fieldValues": "PENDING,SHIPPED,DELIVERED"
+    },
+    {
+      "fieldName": "orderDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "microserviceName": "ecommerceOrder",
+  "name": "Order",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "no"
+}
