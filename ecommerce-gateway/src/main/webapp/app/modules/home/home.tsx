@@ -85,13 +85,14 @@ export const Home = () => {
           </li>
         </ul>
 
-        <p>
-          <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          !
-        </p>
+//         <p>
+//           <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
+//           <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
+//             GitHub
+//           </a>
+//           !
+//         </p>
+
       </Col>
     </Row>
   );

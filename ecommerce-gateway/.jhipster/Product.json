@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20250321095225"
+  },
+  "clientRootFolder": "ecommerceProduct",
+  "databaseType": "sql",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "stock",
+      "fieldType": "Integer"
+    }
+  ],
+  "microserviceName": "ecommerceProduct",
+  "microservicePath": "C:\\Users\\d1359067\\OneDrive - NCS PTE LTD\\Documents\\NUS-ISS\\Cert 2\\Architecting Scalable Systems – (ProjExam)\\Ecom\\ecommerce-product",
+  "name": "Product",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "no"
+}

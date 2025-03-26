@@ -13,7 +13,7 @@
     "devDatabaseType": null,
     "enableHibernateCache": null,
     "enableTranslation": true,
-    "entities": [],
+    "entities": ["Product"],
     "feignClient": null,
     "jhipsterVersion": "8.9.0",
     "jwtSecretKey": "YzhmNzI5ZTM0NmUzNGY1MGU2NDMyYmVmZTA5ZDg1ZTNjM2M4MWNjNTRlOTY5MmY3ZTZhMGUwMzU1YmE0M2JlNWEyYTU1OTc3MjYzMzlhMDYwZDFhNzVhNjI1NmM2MGIxM2VlMDIwNWM3MjFjNmIxYzJiYTI3M2E4ODljMjQzMjg=",
