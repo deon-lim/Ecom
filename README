@@ -1,24 +1,28 @@
 Setup (after cloning repo) 
 
-1. Start up Redis (using docker)
+1. Start up Redis (using Docker)
 docker run -d --name redis -p 6379:6379 redis
 
-2. Installing and running consul to manage services 
+2. Installing and running Consul to manage services 
 a. Install consul - docker pull hashicorp/consul
 b. Run consul (using docker) - docker run -d --name=consul -p 8500:8500 hashicorp/consul
 c.localhost:8500 (to manage and monitor micro-services)
 
-3.Starting up each micro-service 
-a.npm clean install
-b.npm build
-c../mvnw
+3. Starting up each micro-service 
+a. open a terminal for each microservice
+b. cd <mircroservice>
+b. npm clean install
+c. npm build
+d. ./mvnw
 
-4.localhost:8080 to access web-application
+4.localhost:8080 to access web application
 
-4.
-Shut down all docker containers
-docker stop $(docker ps -q)
+5. Shutdown 
+Shut down all Docker containers
+Docker stop $(docker ps -q)
 
-
-
+Troubleshoot
+1. Port in use 
+netstat -ano | findstr :8500
+taskkill /PID <process_id> /F
 
