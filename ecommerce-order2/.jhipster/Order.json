@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20250413110616"
+  },
+  "clientRootFolder": "Order",
+  "databaseType": "mongodb",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "dateTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "product_name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "product_quantity",
+      "fieldType": "Integer"
+    }
+  ],
+  "microserviceName": "Order",
+  "name": "Order",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
