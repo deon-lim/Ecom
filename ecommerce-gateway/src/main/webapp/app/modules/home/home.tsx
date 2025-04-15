@@ -12,12 +12,8 @@ export const Home = () => {
   return (
     <Row>
       <Col md="12" className="text-center my-5">
-        <h1 className="display-3 font-weight-bold">
-          🛒 Welcome to ShopEasy!
-        </h1>
-        <p className="lead">
-          Your one-stop destination for quality products at the best prices.
-        </p>
+        <h1 className="display-3 font-weight-bold">🛒 Welcome to ShopEasy!</h1>
+        <p className="lead">Your one-stop destination for quality products at the best prices.</p>
         {account?.login ? (
           <Alert color="success" className="mt-4">
             Hello <strong>{account.login}</strong>! Browse our latest deals below.
@@ -46,21 +42,27 @@ export const Home = () => {
             <div className="category-tile p-4 border rounded shadow-sm">
               <h5>Electronics</h5>
               <p>Latest gadgets and accessories</p>
-              <Button tag={Link} to="/product" color="primary">Shop Now</Button>
+              <Button tag={Link} to="/product" color="primary">
+                Shop Now
+              </Button>
             </div>
           </Col>
           <Col md="3" className="text-center">
             <div className="category-tile p-4 border rounded shadow-sm">
               <h5>Fashion</h5>
               <p>Trendy outfits and more</p>
-              <Button tag={Link} to="/product" color="primary">Explore</Button>
+              <Button tag={Link} to="/product" color="primary">
+                Explore
+              </Button>
             </div>
           </Col>
           <Col md="3" className="text-center">
             <div className="category-tile p-4 border rounded shadow-sm">
               <h5>Home Essentials</h5>
               <p>Everyday must-haves</p>
-              <Button tag={Link} to="/product" color="primary">View</Button>
+              <Button tag={Link} to="/product" color="primary">
+                View
+              </Button>
             </div>
           </Col>
         </Row>

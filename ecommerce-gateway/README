@@ -1,0 +1,8 @@
+Starting up ecommerce-gateway
+
+Frontend:
+yarn install
+npm start
+
+Backend:
+./mvnw

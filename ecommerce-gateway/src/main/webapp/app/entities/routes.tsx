@@ -12,10 +12,9 @@ import Product from './ecommerceProduct/product';
 
 import { Route } from 'react-router-dom';
 
-import  MenuItem  from 'app/shared/layout/menus/menu-item';
+import MenuItem from 'app/shared/layout/menus/menu-item';
 
 import { Translate } from 'react-jhipster';
-
 
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
