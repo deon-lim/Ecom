@@ -2,14 +2,12 @@ package com.mycompany.product.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * A Product.
  */
 @Entity
 @Table(name = "product")
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -17,116 +15,29 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "category", nullable = false)
+    private String category;
+
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
 
-    @Column(name = "price", precision = 21, scale = 2)
-    private BigDecimal price;
+    // Getters & setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    @Column(name = "stock")
-    private Integer stock;
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public Long getId() {
-        return this.id;
-    }
+    public Integer getQuantity() { return quantity; }
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
 
-    public Product id(Long id) {
-        this.setId(id);
-        return this;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Product name(String name) {
-        this.setName(name);
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public Product description(String description) {
-        this.setDescription(description);
-        return this;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getPrice() {
-        return this.price;
-    }
-
-    public Product price(BigDecimal price) {
-        this.setPrice(price);
-        return this;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Integer getStock() {
-        return this.stock;
-    }
-
-    public Product stock(Integer stock) {
-        this.setStock(stock);
-        return this;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Product)) {
-            return false;
-        }
-        return getId() != null && getId().equals(((Product) o).getId());
-    }
-
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "Product{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", price=" + getPrice() +
-            ", stock=" + getStock() +
-            "}";
-    }
+    // equals, hashCode, toString (can reuse existing implementations)
 }
