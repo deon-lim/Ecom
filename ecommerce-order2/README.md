@@ -1,10 +1,10 @@
-# Order
+# ecommerceOrder2
 
 This application was generated using JHipster 8.9.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.9.0](https://www.jhipster.tech/documentation-archive/v8.9.0).
 
 This is a "microservice" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
 
-This application is configured for Service Discovery and Configuration with the JHipster-Registry. On launch, it will refuse to start if it is not able to connect to the JHipster-Registry at [http://localhost:8761](http://localhost:8761). For more information, read our documentation on [Service Discovery and Configuration with the JHipster-Registry][].
+This application is configured for Service Discovery and Configuration with Consul. On launch, it will refuse to start if it is not able to connect to Consul at [http://localhost:8500](http://localhost:8500). For more information, read our documentation on [Service Discovery and Configuration with Consul][].
 
 ## Project Structure
 
@@ -37,12 +37,25 @@ You will only need to run this command when dependencies change in [package.json
 
 We use npm scripts and [Angular CLI][] with [Webpack][] as our build system.
 
-If you are using hazelcast as a cache, you will have to launch a cache server.
+If you are using redis as a cache, you will have to launch a cache server.
 To start your cache server, run:
 
 ```
-docker compose -f src/main/docker/hazelcast-management-center.yml up -d
+docker compose -f src/main/docker/redis.yml up -d
 ```
+
+The cache can also be turned off by adding to the application yaml:
+
+```yaml
+spring:
+  cache:
+    type: none
+```
+
+See [here](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-caching.html#boot-features-caching-provider-none) for details.
+
+**WARNING**: If you're using the second level Hibernate cache and disabling the Spring cache, you have to disable the second level Hibernate cache as well since they are using
+the same CacheManager.
 
 Run the following commands in two separate terminals to create a blissful development experience where your browser
 auto-refreshes when files change on your hard drive.
@@ -152,7 +165,7 @@ update src/main/webapp/app/app.config.ts
 
 ### Packaging as jar
 
-To build the final jar and optimize the Order application for production, run:
+To build the final jar and optimize the ecommerceOrder2 application for production, run:
 
 ```
 ./mvnw -Pprod clean verify
@@ -293,7 +306,7 @@ To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`)
 [JHipster 8.9.0 archive]: https://www.jhipster.tech/documentation-archive/v8.9.0
 [Doing microservices with JHipster]: https://www.jhipster.tech/documentation-archive/v8.9.0/microservices-architecture/
 [Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v8.9.0/development/
-[Service Discovery and Configuration with the JHipster-Registry]: https://www.jhipster.tech/documentation-archive/v8.9.0/microservices-architecture/#jhipster-registry
+[Service Discovery and Configuration with Consul]: https://www.jhipster.tech/documentation-archive/v8.9.0/microservices-architecture/#consul
 [Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v8.9.0/docker-compose
 [Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v8.9.0/production/
 [Running tests page]: https://www.jhipster.tech/documentation-archive/v8.9.0/running-tests/

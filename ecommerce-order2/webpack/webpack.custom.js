@@ -14,7 +14,7 @@ module.exports = async (config, options, targetOptions) => {
   if (config.mode === 'development') {
     config.plugins.push(
       new WebpackNotifierPlugin({
-        title: 'Order',
+        title: 'Ecommerce Order 2',
         contentImage: path.join(__dirname, 'logo-jhipster.png'),
       }),
     );

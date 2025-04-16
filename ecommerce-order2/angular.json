@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "order": {
+    "ecommerce-order-2": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -82,15 +82,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "buildTarget": "order:build:development",
+            "buildTarget": "ecommerce-order-2:build:development",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "buildTarget": "order:build:production"
+              "buildTarget": "ecommerce-order-2:build:production"
             },
             "development": {
-              "buildTarget": "order:build:development"
+              "buildTarget": "ecommerce-order-2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -111,6 +111,7 @@
       "path": "./target/angular/",
       "environment": "all"
     },
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   }
 }

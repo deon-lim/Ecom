@@ -22,12 +22,12 @@ export class AlertErrorComponent implements OnDestroy {
   private readonly eventManager = inject(EventManager);
 
   constructor() {
-    this.errorListener = this.eventManager.subscribe('orderApp.error', (response: EventWithContent<unknown> | string) => {
+    this.errorListener = this.eventManager.subscribe('ecommerceOrder2App.error', (response: EventWithContent<unknown> | string) => {
       const errorResponse = (response as EventWithContent<AlertError>).content;
       this.addErrorAlert(errorResponse.message);
     });
 
-    this.httpErrorListener = this.eventManager.subscribe('orderApp.httpError', (response: EventWithContent<unknown> | string) => {
+    this.httpErrorListener = this.eventManager.subscribe('ecommerceOrder2App.httpError', (response: EventWithContent<unknown> | string) => {
       this.handleHttpError(response);
     });
   }

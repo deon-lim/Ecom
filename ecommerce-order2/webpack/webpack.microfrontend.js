@@ -23,7 +23,7 @@ sharedDependencies = {
 // eslint-disable-next-line no-unused-vars
 module.exports = (config, options, targetOptions) => {
   return withModuleFederationPlugin({
-    name: 'order',
+    name: 'ecommerceorder2',
     exposes: {
       './entity-navbar-items': 'app/entities/entity-navbar-items.ts',
       './entity-routes': 'app/entities/entity.routes.ts',

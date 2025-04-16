@@ -19,7 +19,7 @@ const routes: Routes = [
     title: 'login.title',
   },
   {
-    path: 'order',
+    path: 'ecommerceorder2',
     loadChildren: () => import(`./entities/entity.routes`),
   },
   ...errorRoute,

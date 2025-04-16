@@ -1,29 +1,28 @@
 {
   "annotations": {
-    "changelogDate": "20250413110616"
+    "changelogDate": "20250416125725"
   },
-  "clientRootFolder": "Order",
+  "clientRootFolder": "ecommerceOrder2",
   "databaseType": "mongodb",
-  "dto": "mapstruct",
   "fields": [
     {
-      "fieldName": "dateTime",
-      "fieldType": "Instant"
-    },
-    {
-      "fieldName": "product_name",
+      "fieldName": "customerId",
       "fieldType": "String"
     },
     {
-      "fieldName": "product_quantity",
-      "fieldType": "Integer"
+      "fieldName": "totalAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
     }
   ],
-  "microserviceName": "Order",
+  "microserviceName": "ecommerceOrder2",
   "name": "Order",
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [],
   "searchEngine": "no",
-  "service": "serviceImpl"
+  "service": "no"
 }

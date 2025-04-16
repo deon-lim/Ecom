@@ -46,7 +46,7 @@ describe('MainComponent', () => {
   });
 
   describe('page title', () => {
-    const defaultPageTitle = 'Order';
+    const defaultPageTitle = 'Ecommerce Order 2';
     const parentRoutePageTitle = 'parentTitle';
     const childRoutePageTitle = 'childTitle';
 
