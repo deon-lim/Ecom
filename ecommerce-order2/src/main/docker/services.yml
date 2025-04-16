@@ -1,11 +1,19 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-name: order
+name: ecommerceorder2
 services:
   mongodb:
     extends:
       file: ./mongodb.yml
       service: mongodb
-  jhipster-registry:
+  redis:
     extends:
-      file: ./jhipster-registry.yml
-      service: jhipster-registry
+      file: ./redis.yml
+      service: redis
+  consul:
+    extends:
+      file: ./consul.yml
+      service: consul
+  consul-config-loader:
+    extends:
+      file: ./consul.yml
+      service: consul-config-loader

@@ -13,16 +13,9 @@
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
 
-eureka:
-  client:
-    enabled: false
-  instance:
-    appname: Order
-    instanceId: Order:${spring.application.instance-id:${random.value}}
-
 mongock:
   migration-scan-package:
-    - com.order.config.dbmigrations
+    - com.nusiss.order.config.dbmigrations
   mongo-db:
     read-concern: local
     write-concern:
@@ -31,9 +24,14 @@ mongock:
 
 spring:
   application:
-    name: Order
+    name: ecommerceOrder2
   cloud:
-    config:
+    consul:
+      discovery:
+        enabled: false
+        instanceId: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+      config:
+        enabled: false
       enabled: false
   jackson:
     serialization:
@@ -52,13 +50,13 @@ spring:
           authorities-claim-name: auth
   task:
     execution:
-      thread-name-prefix: order-task-
+      thread-name-prefix: ecommerce-order-2-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: order-scheduling-
+      thread-name-prefix: ecommerce-order-2-scheduling-
       pool:
         size: 20
   thymeleaf:
@@ -75,9 +73,9 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'orderApp'
+    name: 'ecommerceOrder2App'
   mail:
-    from: Order@localhost.com
+    from: ecommerceOrder2@localhost.com
     base-url: http://127.0.0.1:8080
   logging:
     # To test json console appender
@@ -91,7 +89,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: ODAxZTM2ZDQ0Y2M4MDU5MWE1NmE5OWM4YjFhZWQ1Nzg2YmVkMWU3YWRhNGM4NDY4MjA2YTQ0OGRiNGU4OWUwNDMyYmI1MDNiYTY1YTE5NzQxMzFkYmViYTQ4MGI1YmRkMDdhYTRlOWQ0NDc3MWRkMjYwMzMwNmExYzIzYzAzNDE=
+        base64-secret: YTQ3NDc5NWExODY5ZTA2YjI5NzEyZGM0ZTJmODIwMWViMDg4MjIwY2I2NjhjYzEzM2U4NjZlMmRhOTVhMWNkMWEyNTJmYWFhN2QyNDhmNmIxNTJjZmVhMWM1Yzc4NTI3NmVjMGU4Y2ZjMWZjMDEzMWMzMWNhMzg3YzRjNjAwMjU=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 86400

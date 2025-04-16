@@ -18,14 +18,7 @@ logging:
     ROOT: DEBUG
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
-    com.order: DEBUG
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
+    com.nusiss.order: DEBUG
 
 management:
   zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
@@ -46,16 +39,24 @@ spring:
     serialization:
       indent-output: true
   cloud:
-    config:
-      uri: http://admin:${jhipster.registry.password}@localhost:8761/config
-      # name of the config server's property source (file.yml) that we want to use
-      name: Order
-      profile: dev
-      label: main # toggle to switch to a different version of the configuration as stored in git
-      # it can be set to any label, branch or commit of the configuration source Git repository
+    consul:
+      config:
+        fail-fast: false # if not in "prod" profile, do not force to use Spring Cloud Config
+        format: yaml
+        profile-separator: '-'
+      discovery:
+        prefer-ip-address: true
+        tags:
+          - profile=${spring.profiles.active}
+          - version='@project.version@'
+          - git-version=${git.commit.id.describe:}
+          - git-commit=${git.commit.id.abbrev:}
+          - git-branch=${git.branch:}
+      host: localhost
+      port: 8500
   data:
     mongodb:
-      uri: mongodb://localhost:27017/Order
+      uri: mongodb+srv://engyaohui:Password1@cluster0.slc5aeb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:
@@ -74,11 +75,12 @@ server:
 
 jhipster:
   cache: # Cache configuration
-    hazelcast: # Hazelcast distributed cache
-      time-to-live-seconds: 3600
-      backup-count: 1
-  registry:
-    password: admin
+    redis: # Redis configuration
+      expiration: 3600 # By default objects stay 1 hour (in seconds) in the cache
+      server: redis://localhost:6379
+      cluster: false
+      # server: redis://localhost:6379,redis://localhost:16379,redis://localhost:26379
+      # cluster: true
   # CORS is disabled by default on microservices, as you should access them through a gateway.
   # If you want to enable it, please uncomment the configuration below.
   # cors:
@@ -92,7 +94,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: ODAxZTM2ZDQ0Y2M4MDU5MWE1NmE5OWM4YjFhZWQ1Nzg2YmVkMWU3YWRhNGM4NDY4MjA2YTQ0OGRiNGU4OWUwNDMyYmI1MDNiYTY1YTE5NzQxMzFkYmViYTQ4MGI1YmRkMDdhYTRlOWQ0NDc3MWRkMjYwMzMwNmExYzIzYzAzNDE=
+        base64-secret: YTQ3NDc5NWExODY5ZTA2YjI5NzEyZGM0ZTJmODIwMWViMDg4MjIwY2I2NjhjYzEzM2U4NjZlMmRhOTVhMWNkMWEyNTJmYWFhN2QyNDhmNmIxNTJjZmVhMWM1Yzc4NTI3NmVjMGU4Y2ZjMWZjMDEzMWMzMWNhMzg3YzRjNjAwMjU=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

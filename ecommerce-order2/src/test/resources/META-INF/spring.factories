@@ -1,2 +1,3 @@
 org.springframework.test.context.ContextCustomizerFactory = \
-    com.order.config.TestContainersSpringContextCustomizerFactory
+    com.nusiss.order.config.TestContainersSpringContextCustomizerFactory,com.\
+    nusiss.order.config.RedisTestContainersSpringContextCustomizerFactory
