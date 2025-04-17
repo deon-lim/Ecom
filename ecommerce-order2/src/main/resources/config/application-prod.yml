@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    com.nusiss.order: INFO
+    com.mycompany.order2: INFO
 
 management:
   prometheus:
@@ -45,7 +45,7 @@ spring:
       port: 8500
   data:
     mongodb:
-      uri: mongodb+srv://engyaohui:Password1@cluster0.slc5aeb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      uri: mongodb+srv://engyaohui:Password1@cluster0.slc5aeb.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0
   thymeleaf:
     cache: true
 
@@ -101,7 +101,7 @@ jhipster:
         # - In the Consul configserver
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: YTQ3NDc5NWExODY5ZTA2YjI5NzEyZGM0ZTJmODIwMWViMDg4MjIwY2I2NjhjYzEzM2U4NjZlMmRhOTVhMWNkMWEyNTJmYWFhN2QyNDhmNmIxNTJjZmVhMWM1Yzc4NTI3NmVjMGU4Y2ZjMWZjMDEzMWMzMWNhMzg3YzRjNjAwMjU=
+        base64-secret: OWI0NDAwYmMyNjE1NjEyYTJlNjQ1NWQwZmIxZWY3MDZlYjQ3NWJhYTcwODNiOTlhZGM4YjdhYjI3MGUxNGRlNGJiYzkzYTVjNmExNzk3ZTM3MGRhNDEzOTE5OTAxZjBjMjZiMWJlOTRjNmQ2ZThkNzJhNGJiNTUyNGRlZjM1MGY=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
