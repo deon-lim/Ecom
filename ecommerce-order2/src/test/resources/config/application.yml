@@ -15,7 +15,7 @@
 
 mongock:
   migration-scan-package:
-    - com.nusiss.order.config.dbmigrations
+    - com.mycompany.order2.config.dbmigrations
   mongo-db:
     read-concern: local
     write-concern:
@@ -89,7 +89,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: YTQ3NDc5NWExODY5ZTA2YjI5NzEyZGM0ZTJmODIwMWViMDg4MjIwY2I2NjhjYzEzM2U4NjZlMmRhOTVhMWNkMWEyNTJmYWFhN2QyNDhmNmIxNTJjZmVhMWM1Yzc4NTI3NmVjMGU4Y2ZjMWZjMDEzMWMzMWNhMzg3YzRjNjAwMjU=
+        base64-secret: OWI0NDAwYmMyNjE1NjEyYTJlNjQ1NWQwZmIxZWY3MDZlYjQ3NWJhYTcwODNiOTlhZGM4YjdhYjI3MGUxNGRlNGJiYzkzYTVjNmExNzk3ZTM3MGRhNDEzOTE5OTAxZjBjMjZiMWJlOTRjNmQ2ZThkNzJhNGJiNTUyNGRlZjM1MGY=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 86400

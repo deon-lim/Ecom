@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20250417133113"
+  },
+  "clientRootFolder": "ecommerceOrder2",
+  "databaseType": "mongodb",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "customerId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    }
+  ],
+  "microserviceName": "ecommerceOrder2",
+  "name": "Order2",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}
