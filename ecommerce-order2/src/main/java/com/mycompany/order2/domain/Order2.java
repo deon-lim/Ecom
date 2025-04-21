@@ -3,6 +3,7 @@ package com.mycompany.order2.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -30,6 +31,9 @@ public class Order2 implements Serializable {
 
     @Field("created_on")
     private Instant createdOn;
+
+    @Field("products")
+    private List<Order2Product> order2Products; // Adding products field
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -98,6 +102,19 @@ public class Order2 implements Serializable {
         this.createdOn = createdOn;
     }
 
+    public List<Order2Product> getOrder2Products() {
+        return this.order2Products;
+    }
+    
+    public Order2 order2Products(List<Order2Product> order2Products) {
+        this.setOrder2Products(order2Products); // Call the correct setter
+        return this;
+    }
+    
+    public void setOrder2Products(List<Order2Product> order2Products) {
+        this.order2Products = order2Products;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -113,11 +130,9 @@ public class Order2 implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "Order2{" +
@@ -126,6 +141,7 @@ public class Order2 implements Serializable {
             ", orderStatus='" + getOrderStatus() + "'" +
             ", totalAmount=" + getTotalAmount() +
             ", createdOn='" + getCreatedOn() + "'" +
+            ", products=" + getOrder2Products() + // Add products to the string representation
             "}";
     }
 }
