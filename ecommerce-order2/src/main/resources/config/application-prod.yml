@@ -45,7 +45,7 @@ spring:
       port: 8500
   data:
     mongodb:
-      uri: mongodb+srv://engyaohui:Password1@cluster0.slc5aeb.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0
+      uri: mongodb://127.0.0.1:27017/order2
   thymeleaf:
     cache: true
 
