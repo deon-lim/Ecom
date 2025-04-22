@@ -1,0 +1,38 @@
+{
+  "ecommerceGatewayApp": {
+    "customer": {
+      "home": {
+        "title": "Customers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Customer",
+        "createOrEditLabel": "Create or edit a Customer",
+        "notFound": "No Customers found"
+      },
+      "created": "A new Customer is created with identifier {{ param }}",
+      "updated": "A Customer is updated with identifier {{ param }}",
+      "deleted": "A Customer is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Customer {{ id }}?"
+      },
+      "detail": {
+        "title": "Customer"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "dateOfBirth": "Date Of Birth",
+      "phoneNumber": "Phone Number",
+      "addressLine1": "Address Line 1",
+      "addressLine2": "Address Line 2",
+      "postalCode": "Postal Code",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "preferences": "Preferences",
+      "loyaltyPoints": "Loyalty Points",
+      "membershipStatus": "Membership Status",
+      "createdDate": "Created Date",
+      "lastModifiedDate": "Last Modified Date"
+    }
+  }
+}

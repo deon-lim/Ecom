@@ -47,6 +47,8 @@ public class DomainUserDetailsService implements ReactiveUserDetailsService {
     }
 
     private org.springframework.security.core.userdetails.User createSpringSecurityUser(String lowercaseLogin, User user) {
+        System.out.println("Creating Spring Security user from MongoDB: " + user.getLogin());
+
         if (!user.isActivated()) {
             throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
         }

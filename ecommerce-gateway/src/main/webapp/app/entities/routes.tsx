@@ -6,16 +6,12 @@ import { ReducersMapObject, combineReducers } from '@reduxjs/toolkit';
 
 import getStore from 'app/config/store';
 
-import entitiesReducers from './reducers';
-
-import Product from './ecommerceProduct/product';
-
 import { Route } from 'react-router-dom';
 
-import MenuItem from 'app/shared/layout/menus/menu-item';
+import Product from './ecommerceProduct/product';
+import entitiesReducers from './reducers';
 
-import { Translate } from 'react-jhipster';
-
+import Customer from './customer';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -26,6 +22,7 @@ export default () => {
       <ErrorBoundaryRoutes>
         {/* prettier-ignore */}
         <Route path="product/*" element={<Product />} />
+        <Route path="customer/*" element={<Customer />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

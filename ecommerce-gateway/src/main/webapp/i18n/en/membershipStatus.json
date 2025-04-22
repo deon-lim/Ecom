@@ -1,0 +1,11 @@
+{
+  "ecommerceGatewayApp": {
+    "MembershipStatus": {
+      "null": "",
+      "Bronze": "Bronze",
+      "Silver": "Silver",
+      "Gold": "Gold",
+      "Platinum": "Platinum"
+    }
+  }
+}
