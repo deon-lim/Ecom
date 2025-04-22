@@ -1,0 +1,23 @@
+entity Customer {
+  firstName String required,
+  lastName String required,
+  dateOfBirth Instant,
+  phoneNumber String required,
+  addressLine1 String required,
+  addressLine2 String,
+  postalCode String required,
+  city String required,
+  state String,
+  country String required,
+  preferences String,
+  loyaltyPoints Integer,
+  membershipStatus MembershipStatus,
+  createdDate Instant,
+  lastModifiedDate Instant
+}
+
+enum MembershipStatus {
+  Bronze, Silver, Gold, Platinum
+}
+
+paginate Customer with pagination
