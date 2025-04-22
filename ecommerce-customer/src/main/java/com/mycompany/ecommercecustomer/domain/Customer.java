@@ -1,7 +1,12 @@
 package com.mycompany.ecommercecustomer.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * A Customer.
@@ -13,102 +18,128 @@ public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public enum Membership {
+        Bronze, Silver, Gold, Platinum, Emerald
+    }
+
+    public enum Gender {
+        M, F, O 
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @NotNull
+    @Size(max = 100)
+    @Column(name = "first_name", length = 100, nullable = false)
+    private String firstName;
 
-    @Column(name = "email")
-    private String email;
+    @NotNull
+    @Size(max = 100)
+    @Column(name = "last_name", length = 100, nullable = false)
+    private String lastName;
+    
+    @Pattern(regexp = "^(\\+65[\\s\\-]?)?[689]\\d{3}[\\s\\-]?\\d{4}$", message = "Invalid Singapore phone number format")
+    @NotNull
+    @Size(max = 20)
+    @Column(name = "phone_number", length = 20, nullable = false)
+    private String phoneNumber;
 
-    @Column(name = "address")
-    private String address;
+    @NotNull
+    @Column(name = "date_of_birth", nullable = false)
+    private LocalDate dateOfBirth;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    @Enumerated(EnumType.STRING)
+    @Size(max = 1)
+    @Column(name = "gender", length = 1, nullable = false)
+    private Gender gender;
 
-    public Long getId() {
-        return this.id;
-    }
+    @NotNull
+    @Size(max = 100)
+    @Column(name = "street", length = 100, nullable = false)
+    private String street;
 
-    public Customer id(Long id) {
-        this.setId(id);
-        return this;
-    }
+    @NotNull
+    @Size(max = 100)
+    @Column(name = "postal_code", length = 100, nullable = false)
+    private String postalCode;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "membership", length = 10, nullable = false)
+    private Membership membership;
 
-    public String getName() {
-        return this.name;
-    }
+    @NotNull
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
 
-    public Customer name(String name) {
-        this.setName(name);
-        return this;
-    }
+    @UpdateTimestamp
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // Getters and Setters
 
-    public String getEmail() {
-        return this.email;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Customer email(String email) {
-        this.setEmail(email);
-        return this;
-    }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public String getAddress() {
-        return this.address;
-    }
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public Customer address(String address) {
-        this.setAddress(address);
-        return this;
-    }
+    public LocalDate getDateOfBirth() { return dateOfBirth; }
+    public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    public Gender getGender() { return gender; }
+    public void setGender(Gender gender) { this.gender = gender; }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    public String getStreet() { return street; }
+    public void setStreet(String street) { this.street = street; }
+
+    public String getPostalCode() { return postalCode; }
+    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
+
+    public Membership getMembership() { return membership; }
+    public void setMembership(Membership membership) { this.membership = membership; }
+
+    public Integer getUserId() { return userId; }
+    public void setUserId(Integer userId) { this.userId = userId; }
+
+    public LocalDateTime getUpdatedDate() { return updatedDate; }
+    public void setUpdatedDate(LocalDateTime updatedDate) { this.updatedDate = updatedDate; }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Customer)) {
-            return false;
-        }
-        return getId() != null && getId().equals(((Customer) o).getId());
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        return id != null && id.equals(((Customer) o).id);
     }
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
-    // prettier-ignore
     @Override
     public String toString() {
         return "Customer{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", address='" + getAddress() + "'" +
-            "}";
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            ", dateOfBirth=" + dateOfBirth +
+            ", gender='" + gender + '\'' +
+            ", street='" + street + '\'' +
+            ", postalCode='" + postalCode + '\'' +
+            ", membership=" + membership +
+            ", userId=" + userId +
+            ", updatedDate=" + updatedDate +
+            '}';
     }
 }
