@@ -17,12 +17,12 @@ export const ProductDetail = () => {
     dispatch(getEntity(id));
   }, []);
 
-  const productEntity = useAppSelector(state => state.ecommercegateway.product.entity);
+  const productEntity = useAppSelector(state => state.gateway.product.entity);
   return (
     <Row>
       <Col md="8">
         <h2 data-cy="productDetailsHeading">
-          <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.detail.title">Product</Translate>
+          <Translate contentKey="gatewayApp.ecommerceProductProduct.detail.title">Product</Translate>
         </h2>
         <dl className="jh-entity-details">
           <dt>
@@ -33,25 +33,25 @@ export const ProductDetail = () => {
           <dd>{productEntity.id}</dd>
           <dt>
             <span id="name">
-              <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.name">Name</Translate>
+              <Translate contentKey="gatewayApp.ecommerceProductProduct.name">Name</Translate>
             </span>
           </dt>
           <dd>{productEntity.name}</dd>
           <dt>
             <span id="description">
-              <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.description">Description</Translate>
+              <Translate contentKey="gatewayApp.ecommerceProductProduct.description">Description</Translate>
             </span>
           </dt>
           <dd>{productEntity.description}</dd>
           <dt>
             <span id="price">
-              <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.price">Price</Translate>
+              <Translate contentKey="gatewayApp.ecommerceProductProduct.price">Price</Translate>
             </span>
           </dt>
           <dd>{productEntity.price}</dd>
           <dt>
             <span id="stock">
-              <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.stock">Stock</Translate>
+              <Translate contentKey="gatewayApp.ecommerceProductProduct.stock">Stock</Translate>
             </span>
           </dt>
           <dd>{productEntity.stock}</dd>

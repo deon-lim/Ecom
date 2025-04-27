@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router';
 
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 
@@ -6,17 +7,15 @@ import { ReducersMapObject, combineReducers } from '@reduxjs/toolkit';
 
 import getStore from 'app/config/store';
 
-import { Route } from 'react-router-dom';
-
-import Product from './ecommerceProduct/product';
 import entitiesReducers from './reducers';
 
+import Product from './ecommerceProduct/product';
 import Customer from './customer';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
   const store = getStore();
-  store.injectReducer('ecommercegateway', combineReducers(entitiesReducers as ReducersMapObject));
+  store.injectReducer('gateway', combineReducers(entitiesReducers as ReducersMapObject));
   return (
     <div>
       <ErrorBoundaryRoutes>

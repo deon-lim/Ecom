@@ -1,23 +1,25 @@
-entity Customer {
-  firstName String required,
-  lastName String required,
-  dateOfBirth Instant,
-  phoneNumber String required,
-  addressLine1 String required,
-  addressLine2 String,
-  postalCode String required,
-  city String required,
-  state String,
-  country String required,
-  preferences String,
-  loyaltyPoints Integer,
-  membershipStatus MembershipStatus,
-  createdDate Instant,
-  lastModifiedDate Instant
+application {
+  config {
+    baseName gateway
+    applicationType gateway
+    authenticationType jwt
+    clientFramework react
+  }
+  entities Customer
 }
 
-enum MembershipStatus {
-  Bronze, Silver, Gold, Platinum
+entity Customer {
+  firstName String,
+  lastName String,
+  phoneNumber String,
+  city String,
+  userId String
+}
+
+relationship OneToOne {
+  Customer{user(login)} to User with builtInEntity
 }
 
 paginate Customer with pagination
+dto Customer with mapstruct
+service Customer with serviceClass

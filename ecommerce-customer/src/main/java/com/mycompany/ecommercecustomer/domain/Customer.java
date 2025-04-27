@@ -1,7 +1,11 @@
 package com.mycompany.ecommercecustomer.domain;
 
+import com.mycompany.ecommercecustomer.domain.enumeration.Gender;
+import com.mycompany.ecommercecustomer.domain.enumeration.MembershipStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * A Customer.
@@ -19,14 +23,66 @@ public class Customer implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @NotNull
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Column(name = "email")
-    private String email;
+    @NotNull
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "date_of_birth")
+    private Instant dateOfBirth;
+
+    @NotNull
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @NotNull
+    @Column(name = "address_line_1", nullable = false)
+    private String addressLine1;
+
+    @Column(name = "address_line_2")
+    private String addressLine2;
+
+    @NotNull
+    @Column(name = "postal_code", nullable = false)
+    private String postalCode;
+
+    @NotNull
+    @Column(name = "city", nullable = false)
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @NotNull
+    @Column(name = "country", nullable = false)
+    private String country;
+
+    @Column(name = "preferences")
+    private String preferences;
+
+    @Column(name = "loyalty_points")
+    private Integer loyaltyPoints;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "membership_status")
+    private MembershipStatus membershipStatus;
+
+    @Column(name = "created_date")
+    private Instant createdDate;
+
+    @Column(name = "last_modified_date")
+    private Instant lastModifiedDate;
+
+    @NotNull
+    @Column(name = "user_id", nullable = false)
+    private String userId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
+    private Gender gender;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -43,43 +99,225 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return this.name;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    public Customer name(String name) {
-        this.setName(name);
+    public Customer firstName(String firstName) {
+        this.setFirstName(firstName);
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getLastName() {
+        return this.lastName;
     }
 
-    public Customer email(String email) {
-        this.setEmail(email);
+    public Customer lastName(String lastName) {
+        this.setLastName(lastName);
         return this;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return this.address;
+    public Instant getDateOfBirth() {
+        return this.dateOfBirth;
     }
 
-    public Customer address(String address) {
-        this.setAddress(address);
+    public Customer dateOfBirth(Instant dateOfBirth) {
+        this.setDateOfBirth(dateOfBirth);
         return this;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDateOfBirth(Instant dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public Customer phoneNumber(String phoneNumber) {
+        this.setPhoneNumber(phoneNumber);
+        return this;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddressLine1() {
+        return this.addressLine1;
+    }
+
+    public Customer addressLine1(String addressLine1) {
+        this.setAddressLine1(addressLine1);
+        return this;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return this.addressLine2;
+    }
+
+    public Customer addressLine2(String addressLine2) {
+        this.setAddressLine2(addressLine2);
+        return this;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getPostalCode() {
+        return this.postalCode;
+    }
+
+    public Customer postalCode(String postalCode) {
+        this.setPostalCode(postalCode);
+        return this;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public Customer city(String city) {
+        this.setCity(city);
+        return this;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return this.state;
+    }
+
+    public Customer state(String state) {
+        this.setState(state);
+        return this;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return this.country;
+    }
+
+    public Customer country(String country) {
+        this.setCountry(country);
+        return this;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPreferences() {
+        return this.preferences;
+    }
+
+    public Customer preferences(String preferences) {
+        this.setPreferences(preferences);
+        return this;
+    }
+
+    public void setPreferences(String preferences) {
+        this.preferences = preferences;
+    }
+
+    public Integer getLoyaltyPoints() {
+        return this.loyaltyPoints;
+    }
+
+    public Customer loyaltyPoints(Integer loyaltyPoints) {
+        this.setLoyaltyPoints(loyaltyPoints);
+        return this;
+    }
+
+    public void setLoyaltyPoints(Integer loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
+    }
+
+    public MembershipStatus getMembershipStatus() {
+        return this.membershipStatus;
+    }
+
+    public Customer membershipStatus(MembershipStatus membershipStatus) {
+        this.setMembershipStatus(membershipStatus);
+        return this;
+    }
+
+    public void setMembershipStatus(MembershipStatus membershipStatus) {
+        this.membershipStatus = membershipStatus;
+    }
+
+    public Instant getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public Customer createdDate(Instant createdDate) {
+        this.setCreatedDate(createdDate);
+        return this;
+    }
+
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Instant getLastModifiedDate() {
+        return this.lastModifiedDate;
+    }
+
+    public Customer lastModifiedDate(Instant lastModifiedDate) {
+        this.setLastModifiedDate(lastModifiedDate);
+        return this;
+    }
+
+    public void setLastModifiedDate(Instant lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public Customer userId(String userId) {
+        this.setUserId(userId);
+        return this;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Gender getGender() {
+        return this.gender;
+    }
+
+    public Customer gender(Gender gender) {
+        this.setGender(gender);
+        return this;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -106,9 +344,23 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", address='" + getAddress() + "'" +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", dateOfBirth='" + getDateOfBirth() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", addressLine1='" + getAddressLine1() + "'" +
+            ", addressLine2='" + getAddressLine2() + "'" +
+            ", postalCode='" + getPostalCode() + "'" +
+            ", city='" + getCity() + "'" +
+            ", state='" + getState() + "'" +
+            ", country='" + getCountry() + "'" +
+            ", preferences='" + getPreferences() + "'" +
+            ", loyaltyPoints=" + getLoyaltyPoints() +
+            ", membershipStatus='" + getMembershipStatus() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
+            ", lastModifiedDate='" + getLastModifiedDate() + "'" +
+            ", userId='" + getUserId() + "'" +
+            ", gender='" + getGender() + "'" +
             "}";
     }
 }

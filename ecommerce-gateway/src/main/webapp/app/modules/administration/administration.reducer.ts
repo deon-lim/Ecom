@@ -7,9 +7,6 @@ import { AppThunk } from 'app/config/store';
 const initialState = {
   loading: false,
   errorMessage: null,
-  gateway: {
-    routes: [],
-  },
   logs: {
     loggers: [] as any[],
   },
@@ -26,9 +23,6 @@ const initialState = {
 export type AdministrationState = Readonly<typeof initialState>;
 
 // Actions
-export const getGatewayRoutes = createAsyncThunk('administration/fetch_gateway_route', async () => axios.get<any>('api/gateway/routes'), {
-  serializeError: serializeAxiosError,
-});
 
 export const getSystemHealth = createAsyncThunk('administration/fetch_health', async () => axios.get<any>('management/health'), {
   serializeError: serializeAxiosError,
@@ -81,12 +75,6 @@ export const AdministrationSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(getGatewayRoutes.fulfilled, (state, action) => {
-        state.loading = false;
-        state.gateway = {
-          routes: action.payload.data,
-        };
-      })
       .addCase(getSystemHealth.fulfilled, (state, action) => {
         state.loading = false;
         state.health = action.payload.data;
@@ -119,15 +107,12 @@ export const AdministrationSlice = createSlice({
           env: action.payload.data,
         };
       })
+      .addMatcher(isPending(getSystemHealth, getSystemMetrics, getSystemThreadDump, getLoggers, getConfigurations, getEnv), state => {
+        state.errorMessage = null;
+        state.loading = true;
+      })
       .addMatcher(
-        isPending(getGatewayRoutes, getSystemHealth, getSystemMetrics, getSystemThreadDump, getLoggers, getConfigurations, getEnv),
-        state => {
-          state.errorMessage = null;
-          state.loading = true;
-        },
-      )
-      .addMatcher(
-        isRejected(getGatewayRoutes, getSystemHealth, getSystemMetrics, getSystemThreadDump, getLoggers, getConfigurations, getEnv),
+        isRejected(getSystemHealth, getSystemMetrics, getSystemThreadDump, getLoggers, getConfigurations, getEnv),
         (state, action) => {
           state.errorMessage = action.error.message;
           state.loading = false;

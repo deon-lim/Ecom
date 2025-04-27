@@ -1,5 +1,5 @@
 {
-  "ecommerceGatewayApp": {
+  "gatewayApp": {
     "customer": {
       "home": {
         "title": "Customers",
@@ -20,19 +20,10 @@
       "id": "ID",
       "firstName": "First Name",
       "lastName": "Last Name",
-      "dateOfBirth": "Date Of Birth",
       "phoneNumber": "Phone Number",
-      "addressLine1": "Address Line 1",
-      "addressLine2": "Address Line 2",
-      "postalCode": "Postal Code",
       "city": "City",
-      "state": "State",
-      "country": "Country",
-      "preferences": "Preferences",
-      "loyaltyPoints": "Loyalty Points",
-      "membershipStatus": "Membership Status",
-      "createdDate": "Created Date",
-      "lastModifiedDate": "Last Modified Date"
+      "userId": "User Id",
+      "user": "User"
     }
   }
 }

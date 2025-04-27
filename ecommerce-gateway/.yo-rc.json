@@ -2,7 +2,7 @@
   "generator-jhipster": {
     "applicationType": "gateway",
     "authenticationType": "jwt",
-    "baseName": "ecommerceGateway",
+    "baseName": "gateway",
     "buildTool": "maven",
     "cacheProvider": null,
     "clientFramework": "react",

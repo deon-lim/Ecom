@@ -2,27 +2,94 @@
   "annotations": {
     "changelogDate": "20250321100615"
   },
+  "applications": "*",
   "clientRootFolder": "ecommerceCustomer",
   "databaseType": "sql",
+  "dto": "mapstruct",
   "fields": [
     {
-      "fieldName": "name",
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateOfBirth",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "addressLine1",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "addressLine2",
       "fieldType": "String"
     },
     {
-      "fieldName": "email",
+      "fieldName": "postalCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "state",
       "fieldType": "String"
     },
     {
-      "fieldName": "address",
+      "fieldName": "country",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "preferences",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "loyaltyPoints",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "membershipStatus",
+      "fieldType": "MembershipStatus",
+      "fieldValues": "Bronze,Silver,Gold,Platinum"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "userId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "M,F,O"
     }
   ],
   "microserviceName": "ecommerceCustomer",
   "name": "Customer",
-  "pagination": "no",
-  "readOnly": false,
+  "pagination": "pagination",
   "relationships": [],
   "searchEngine": "no",
-  "service": "no"
+  "service": "serviceClass"
 }

@@ -96,9 +96,9 @@ module.exports = async options =>
           reload: false,
         },
       ),
-      //      new WebpackNotifierPlugin({
-      //        title: 'Ecommerce Gateway',
-      //        contentImage: path.join(__dirname, 'logo-jhipster.png'),
-      //      }),
+      new WebpackNotifierPlugin({
+        title: 'Gateway',
+        contentImage: path.join(__dirname, 'logo-jhipster.png'),
+      }),
     ].filter(Boolean),
   });

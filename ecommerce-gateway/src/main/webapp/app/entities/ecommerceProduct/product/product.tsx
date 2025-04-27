@@ -18,8 +18,8 @@ export const Product = () => {
 
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
 
-  const productList = useAppSelector(state => state.ecommercegateway.product.entities);
-  const loading = useAppSelector(state => state.ecommercegateway.product.loading);
+  const productList = useAppSelector(state => state.gateway.product.entities);
+  const loading = useAppSelector(state => state.gateway.product.loading);
 
   const getAllEntities = () => {
     dispatch(
@@ -65,16 +65,16 @@ export const Product = () => {
   return (
     <div>
       <h2 id="product-heading" data-cy="ProductHeading">
-        <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.home.title">Products</Translate>
+        <Translate contentKey="gatewayApp.ecommerceProductProduct.home.title">Products</Translate>
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
-            <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.home.refreshListLabel">Refresh List</Translate>
+            <Translate contentKey="gatewayApp.ecommerceProductProduct.home.refreshListLabel">Refresh List</Translate>
           </Button>
           <Link to="/product/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.home.createLabel">Create new Product</Translate>
+            <Translate contentKey="gatewayApp.ecommerceProductProduct.home.createLabel">Create new Product</Translate>
           </Link>
         </div>
       </h2>
@@ -84,23 +84,23 @@ export const Product = () => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.id">ID</Translate>{' '}
+                  <Translate contentKey="gatewayApp.ecommerceProductProduct.id">ID</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.name">Name</Translate>{' '}
+                  <Translate contentKey="gatewayApp.ecommerceProductProduct.name">Name</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('name')} />
                 </th>
                 <th className="hand" onClick={sort('description')}>
-                  <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.description">Description</Translate>{' '}
+                  <Translate contentKey="gatewayApp.ecommerceProductProduct.description">Description</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('description')} />
                 </th>
                 <th className="hand" onClick={sort('price')}>
-                  <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.price">Price</Translate>{' '}
+                  <Translate contentKey="gatewayApp.ecommerceProductProduct.price">Price</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('price')} />
                 </th>
                 <th className="hand" onClick={sort('stock')}>
-                  <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.stock">Stock</Translate>{' '}
+                  <Translate contentKey="gatewayApp.ecommerceProductProduct.stock">Stock</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('stock')} />
                 </th>
                 <th />
@@ -152,7 +152,7 @@ export const Product = () => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.home.notFound">No Products found</Translate>
+              <Translate contentKey="gatewayApp.ecommerceProductProduct.home.notFound">No Products found</Translate>
             </div>
           )
         )}
