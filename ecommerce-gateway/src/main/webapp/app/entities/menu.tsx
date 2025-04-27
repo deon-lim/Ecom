@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuItem from 'app/shared/layout/menus/menu-item';
 import { Translate } from 'react-jhipster';
+import Orders from './ecommerceOrder2/order/order';
 
 const EntitiesMenu = () => {
   return (
@@ -11,6 +12,9 @@ const EntitiesMenu = () => {
       </MenuItem>
       <MenuItem icon="asterisk" to="/customer">
         <Translate contentKey="global.menu.entities.customer" />
+      </MenuItem>
+      <MenuItem icon="asterisk" to="/orders">
+        <Translate contentKey="global.menu.entities.orders" />
       </MenuItem>
       {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
     </>

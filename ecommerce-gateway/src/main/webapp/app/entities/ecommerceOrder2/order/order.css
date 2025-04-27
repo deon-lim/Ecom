@@ -1,0 +1,91 @@
+/* Orders Component Styling */
+.orders-container {
+    margin: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .orders-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .orders-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orders-container table th, .orders-container table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd; /* Adds a line to separate columns */
+  }
+  
+  .orders-container table th {
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .orders-container table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .orders-container table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Remove right border from the last column */
+  .orders-container table td:last-child, 
+  .orders-container table th:last-child {
+    border-right: none;
+  }
+  
+  /* For better product listing */
+  .orders-container table td ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: none;
+  }
+  
+  .orders-container table td li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .orders-container table td li p {
+    margin: 0.25rem 0;
+  }
+  
+  .orders-container table td p:last-child {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #007BFF;
+  }
+  
+  /* Loading and Error states */
+  .orders-container .loading,
+  .orders-container .error {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #ff0000;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .orders-container table {
+      font-size: 0.875rem;
+    }
+  
+    .orders-container table th,
+    .orders-container table td {
+      padding: 8px;
+    }
+  }
+  
