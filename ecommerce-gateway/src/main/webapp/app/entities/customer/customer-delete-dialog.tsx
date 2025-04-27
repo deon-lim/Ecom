@@ -21,8 +21,8 @@ export const CustomerDeleteDialog = () => {
     setLoadModal(true);
   }, []);
 
-  const customerEntity = useAppSelector(state => state.ecommercegateway.customer.entity);
-  const updateSuccess = useAppSelector(state => state.ecommercegateway.customer.updateSuccess);
+  const customerEntity = useAppSelector(state => state.gateway.customer.entity);
+  const updateSuccess = useAppSelector(state => state.gateway.customer.updateSuccess);
 
   const handleClose = () => {
     navigate(`/customer${pageLocation.search}`);
@@ -44,8 +44,8 @@ export const CustomerDeleteDialog = () => {
       <ModalHeader toggle={handleClose} data-cy="customerDeleteDialogHeading">
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
-      <ModalBody id="ecommerceGatewayApp.customer.delete.question">
-        <Translate contentKey="ecommerceGatewayApp.customer.delete.question" interpolate={{ id: customerEntity.id }}>
+      <ModalBody id="gatewayApp.customer.delete.question">
+        <Translate contentKey="gatewayApp.customer.delete.question" interpolate={{ id: customerEntity.id }}>
           Are you sure you want to delete this Customer?
         </Translate>
       </ModalBody>

@@ -8,12 +8,3 @@ Main page styles
   background: url('/content/images/jhipster_family_member_0.svg') no-repeat center top;
   background-size: contain;
 }
-
-.category-tile {
-  transition: transform 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.category-tile:hover {
-  transform: scale(1.05);
-}

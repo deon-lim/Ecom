@@ -47,9 +47,23 @@ public class CustomerAsserts {
     public static void assertCustomerUpdatableFieldsEquals(Customer expected, Customer actual) {
         assertThat(actual)
             .as("Verify Customer relevant properties")
-            .satisfies(a -> assertThat(a.getName()).as("check name").isEqualTo(expected.getName()))
-            .satisfies(a -> assertThat(a.getEmail()).as("check email").isEqualTo(expected.getEmail()))
-            .satisfies(a -> assertThat(a.getAddress()).as("check address").isEqualTo(expected.getAddress()));
+            .satisfies(a -> assertThat(a.getFirstName()).as("check firstName").isEqualTo(expected.getFirstName()))
+            .satisfies(a -> assertThat(a.getLastName()).as("check lastName").isEqualTo(expected.getLastName()))
+            .satisfies(a -> assertThat(a.getDateOfBirth()).as("check dateOfBirth").isEqualTo(expected.getDateOfBirth()))
+            .satisfies(a -> assertThat(a.getPhoneNumber()).as("check phoneNumber").isEqualTo(expected.getPhoneNumber()))
+            .satisfies(a -> assertThat(a.getAddressLine1()).as("check addressLine1").isEqualTo(expected.getAddressLine1()))
+            .satisfies(a -> assertThat(a.getAddressLine2()).as("check addressLine2").isEqualTo(expected.getAddressLine2()))
+            .satisfies(a -> assertThat(a.getPostalCode()).as("check postalCode").isEqualTo(expected.getPostalCode()))
+            .satisfies(a -> assertThat(a.getCity()).as("check city").isEqualTo(expected.getCity()))
+            .satisfies(a -> assertThat(a.getState()).as("check state").isEqualTo(expected.getState()))
+            .satisfies(a -> assertThat(a.getCountry()).as("check country").isEqualTo(expected.getCountry()))
+            .satisfies(a -> assertThat(a.getPreferences()).as("check preferences").isEqualTo(expected.getPreferences()))
+            .satisfies(a -> assertThat(a.getLoyaltyPoints()).as("check loyaltyPoints").isEqualTo(expected.getLoyaltyPoints()))
+            .satisfies(a -> assertThat(a.getMembershipStatus()).as("check membershipStatus").isEqualTo(expected.getMembershipStatus()))
+            .satisfies(a -> assertThat(a.getCreatedDate()).as("check createdDate").isEqualTo(expected.getCreatedDate()))
+            .satisfies(a -> assertThat(a.getLastModifiedDate()).as("check lastModifiedDate").isEqualTo(expected.getLastModifiedDate()))
+            .satisfies(a -> assertThat(a.getUserId()).as("check userId").isEqualTo(expected.getUserId()))
+            .satisfies(a -> assertThat(a.getGender()).as("check gender").isEqualTo(expected.getGender()));
     }
 
     /**

@@ -1,31 +1,27 @@
-entity Customer {
-  firstName String required,
-  lastName String required,
-  dateOfBirth Instant,
-  phoneNumber String required,
-  addressLine1 String required,
-  addressLine2 String,
-  postalCode String required,
-  city String required,
-  state String,
-  country String required,
-  preferences String,
-  loyaltyPoints Integer,
-  membershipStatus MembershipStatus,
-  createdDate Instant,
-  lastModifiedDate Instant
-}
+ entity Customer {
+   firstName String required,
+   lastName String required,
+   dateOfBirth Instant,
+   phoneNumber String required,
+   addressLine1 String required,
+   addressLine2 String,
+   postalCode String required,
+   city String required,
+   state String,
+   country String required,
+   preferences String,
+   loyaltyPoints Integer,
+   membershipStatus MembershipStatus,
+   createdDate Instant,
+   lastModifiedDate Instant
+   userId String required
+ }
 
-enum MembershipStatus {
-  Bronze, Silver, Gold, Platinum
-}
+ enum MembershipStatus {
+   Bronze, Silver, Gold, Platinum
+ }
 
-relationship OneToOne {
-  Customer{user(login)} to User
-}
-
-dto Customer with mapstruct
-paginate Customer with pagination
-service Customer with serviceClass
-
-microservice Customer with customer
+ dto Customer with mapstruct
+ paginate Customer with pagination
+ service Customer with serviceClass
+ microservice Customer with customer

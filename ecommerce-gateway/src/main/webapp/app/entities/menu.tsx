@@ -1,7 +1,8 @@
 import React from 'react';
-import MenuItem from 'app/shared/layout/menus/menu-item';
 import { Translate } from 'react-jhipster';
 import Orders from './ecommerceOrder2/order/order';
+
+import MenuItem from 'app/shared/layout/menus/menu-item';
 
 const EntitiesMenu = () => {
   return (

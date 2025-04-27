@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { JhiItemCount, JhiPagination, TextFormat, Translate, getPaginationState } from 'react-jhipster';
+import { JhiItemCount, JhiPagination, Translate, getPaginationState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
-import { APP_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -21,9 +20,9 @@ export const Customer = () => {
     overridePaginationStateWithQueryParams(getPaginationState(pageLocation, ITEMS_PER_PAGE, 'id'), pageLocation.search),
   );
 
-  const customerList = useAppSelector(state => state.ecommercegateway.customer.entities);
-  const loading = useAppSelector(state => state.ecommercegateway.customer.loading);
-  const totalItems = useAppSelector(state => state.ecommercegateway.customer.totalItems);
+  const customerList = useAppSelector(state => state.gateway.customer.entities);
+  const loading = useAppSelector(state => state.gateway.customer.loading);
+  const totalItems = useAppSelector(state => state.gateway.customer.totalItems);
 
   const getAllEntities = () => {
     dispatch(
@@ -92,16 +91,16 @@ export const Customer = () => {
   return (
     <div>
       <h2 id="customer-heading" data-cy="CustomerHeading">
-        <Translate contentKey="ecommerceGatewayApp.customer.home.title">Customers</Translate>
+        <Translate contentKey="gatewayApp.customer.home.title">Customers</Translate>
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
-            <Translate contentKey="ecommerceGatewayApp.customer.home.refreshListLabel">Refresh List</Translate>
+            <Translate contentKey="gatewayApp.customer.home.refreshListLabel">Refresh List</Translate>
           </Button>
           <Link to="/customer/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="ecommerceGatewayApp.customer.home.createLabel">Create new Customer</Translate>
+            <Translate contentKey="gatewayApp.customer.home.createLabel">Create new Customer</Translate>
           </Link>
         </div>
       </h2>
@@ -111,68 +110,30 @@ export const Customer = () => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.id">ID</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+                  <Translate contentKey="gatewayApp.customer.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
                 <th className="hand" onClick={sort('firstName')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.firstName">First Name</Translate>{' '}
+                  <Translate contentKey="gatewayApp.customer.firstName">First Name</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('firstName')} />
                 </th>
                 <th className="hand" onClick={sort('lastName')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.lastName">Last Name</Translate>{' '}
+                  <Translate contentKey="gatewayApp.customer.lastName">Last Name</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('lastName')} />
                 </th>
-                <th className="hand" onClick={sort('dateOfBirth')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.dateOfBirth">Date Of Birth</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('dateOfBirth')} />
-                </th>
                 <th className="hand" onClick={sort('phoneNumber')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.phoneNumber">Phone Number</Translate>{' '}
+                  <Translate contentKey="gatewayApp.customer.phoneNumber">Phone Number</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('phoneNumber')} />
                 </th>
-                <th className="hand" onClick={sort('addressLine1')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.addressLine1">Address Line 1</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('addressLine1')} />
-                </th>
-                <th className="hand" onClick={sort('addressLine2')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.addressLine2">Address Line 2</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('addressLine2')} />
-                </th>
-                <th className="hand" onClick={sort('postalCode')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.postalCode">Postal Code</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('postalCode')} />
-                </th>
                 <th className="hand" onClick={sort('city')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.city">City</Translate>{' '}
+                  <Translate contentKey="gatewayApp.customer.city">City</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('city')} />
                 </th>
-                <th className="hand" onClick={sort('state')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.state">State</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('state')} />
+                <th className="hand" onClick={sort('userId')}>
+                  <Translate contentKey="gatewayApp.customer.userId">User Id</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('userId')} />
                 </th>
-                <th className="hand" onClick={sort('country')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.country">Country</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('country')} />
-                </th>
-                <th className="hand" onClick={sort('preferences')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.preferences">Preferences</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('preferences')} />
-                </th>
-                <th className="hand" onClick={sort('loyaltyPoints')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.loyaltyPoints">Loyalty Points</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('loyaltyPoints')} />
-                </th>
-                <th className="hand" onClick={sort('membershipStatus')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.membershipStatus">Membership Status</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('membershipStatus')} />
-                </th>
-                <th className="hand" onClick={sort('createdDate')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.createdDate">Created Date</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('createdDate')} />
-                </th>
-                <th className="hand" onClick={sort('lastModifiedDate')}>
-                  <Translate contentKey="ecommerceGatewayApp.customer.lastModifiedDate">Last Modified Date</Translate>{' '}
-                  <FontAwesomeIcon icon={getSortIconByFieldName('lastModifiedDate')} />
+                <th>
+                  <Translate contentKey="gatewayApp.customer.user">User</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -187,25 +148,10 @@ export const Customer = () => {
                   </td>
                   <td>{customer.firstName}</td>
                   <td>{customer.lastName}</td>
-                  <td>{customer.dateOfBirth ? <TextFormat type="date" value={customer.dateOfBirth} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{customer.phoneNumber}</td>
-                  <td>{customer.addressLine1}</td>
-                  <td>{customer.addressLine2}</td>
-                  <td>{customer.postalCode}</td>
                   <td>{customer.city}</td>
-                  <td>{customer.state}</td>
-                  <td>{customer.country}</td>
-                  <td>{customer.preferences}</td>
-                  <td>{customer.loyaltyPoints}</td>
-                  <td>
-                    <Translate contentKey={`ecommerceGatewayApp.MembershipStatus.${customer.membershipStatus}`} />
-                  </td>
-                  <td>{customer.createdDate ? <TextFormat type="date" value={customer.createdDate} format={APP_DATE_FORMAT} /> : null}</td>
-                  <td>
-                    {customer.lastModifiedDate ? (
-                      <TextFormat type="date" value={customer.lastModifiedDate} format={APP_DATE_FORMAT} />
-                    ) : null}
-                  </td>
+                  <td>{customer.userId}</td>
+                  <td>{customer.user ? customer.user.login : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/customer/${customer.id}`} color="info" size="sm" data-cy="entityDetailsButton">
@@ -248,7 +194,7 @@ export const Customer = () => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="ecommerceGatewayApp.customer.home.notFound">No Customers found</Translate>
+              <Translate contentKey="gatewayApp.customer.home.notFound">No Customers found</Translate>
             </div>
           )
         )}

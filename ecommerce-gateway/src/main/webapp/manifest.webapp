@@ -1,6 +1,6 @@
 {
-  "name": "EcommerceGateway",
-  "short_name": "EcommerceGateway",
+  "name": "Gateway",
+  "short_name": "Gateway",
   "icons": [
     {
       "src": "./content/images/jhipster_family_member_0_head-192.png",

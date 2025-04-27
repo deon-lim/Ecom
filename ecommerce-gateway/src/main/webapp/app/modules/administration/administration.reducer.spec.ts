@@ -5,7 +5,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import administration, {
   getConfigurations,
   getEnv,
-  getGatewayRoutes,
   getLoggers,
   getSystemHealth,
   getSystemMetrics,
@@ -27,7 +26,6 @@ describe('Administration reducer tests', () => {
       errorMessage: null,
       totalItems: 0,
     });
-    expect(isEmpty(state.gateway.routes));
     expect(isEmpty(state.logs.loggers));
     expect(isEmpty(state.threadDump));
   }
@@ -48,7 +46,6 @@ describe('Administration reducer tests', () => {
     it('should set state to loading', () => {
       testMultipleTypes(
         [
-          getGatewayRoutes.pending.type,
           getLoggers.pending.type,
           getSystemHealth.pending.type,
           getSystemMetrics.pending.type,
@@ -71,7 +68,6 @@ describe('Administration reducer tests', () => {
     it('should set state to failed and put an error message in errorMessage', () => {
       testMultipleTypes(
         [
-          getGatewayRoutes.rejected.type,
           getLoggers.rejected.type,
           getSystemHealth.rejected.type,
           getSystemMetrics.rejected.type,
@@ -94,15 +90,6 @@ describe('Administration reducer tests', () => {
   });
 
   describe('Success', () => {
-    it('should update state according to a successful fetch gateway routes request', () => {
-      const payload = { data: [] };
-      const toTest = administration(undefined, { type: getGatewayRoutes.fulfilled.type, payload });
-
-      expect(toTest).toMatchObject({
-        loading: false,
-        gateway: { routes: payload.data },
-      });
-    });
     it('should update state according to a successful fetch logs request', () => {
       const payload = {
         data: {
@@ -190,14 +177,6 @@ describe('Administration reducer tests', () => {
       });
       axios.get = sinon.stub().returns(Promise.resolve(resolvedObject));
       axios.post = sinon.stub().returns(Promise.resolve(resolvedObject));
-    });
-    it('dispatches FETCH_GATEWAY_ROUTE_PENDING and FETCH_GATEWAY_ROUTE_FULFILLED actions', async () => {
-      const result = await getGatewayRoutes()(dispatch, getState, extra);
-
-      const pendingAction = dispatch.mock.calls[0][0];
-      expect(pendingAction.meta.requestStatus).toBe('pending');
-      expect(getGatewayRoutes.fulfilled.match(result)).toBe(true);
-      expect(result.payload).toBe(resolvedObject);
     });
     it('dispatches FETCH_HEALTH_PENDING and FETCH_HEALTH_FULFILLED actions', async () => {
       const result = await getSystemHealth()(dispatch, getState, extra);

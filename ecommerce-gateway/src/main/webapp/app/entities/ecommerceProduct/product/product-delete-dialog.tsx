@@ -21,8 +21,8 @@ export const ProductDeleteDialog = () => {
     setLoadModal(true);
   }, []);
 
-  const productEntity = useAppSelector(state => state.ecommercegateway.product.entity);
-  const updateSuccess = useAppSelector(state => state.ecommercegateway.product.updateSuccess);
+  const productEntity = useAppSelector(state => state.gateway.product.entity);
+  const updateSuccess = useAppSelector(state => state.gateway.product.updateSuccess);
 
   const handleClose = () => {
     navigate('/product');
@@ -44,8 +44,8 @@ export const ProductDeleteDialog = () => {
       <ModalHeader toggle={handleClose} data-cy="productDeleteDialogHeading">
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
-      <ModalBody id="ecommerceGatewayApp.ecommerceProductProduct.delete.question">
-        <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.delete.question" interpolate={{ id: productEntity.id }}>
+      <ModalBody id="gatewayApp.ecommerceProductProduct.delete.question">
+        <Translate contentKey="gatewayApp.ecommerceProductProduct.delete.question" interpolate={{ id: productEntity.id }}>
           Are you sure you want to delete this Product?
         </Translate>
       </ModalBody>

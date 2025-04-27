@@ -16,10 +16,10 @@ export const ProductUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const productEntity = useAppSelector(state => state.ecommercegateway.product.entity);
-  const loading = useAppSelector(state => state.ecommercegateway.product.loading);
-  const updating = useAppSelector(state => state.ecommercegateway.product.updating);
-  const updateSuccess = useAppSelector(state => state.ecommercegateway.product.updateSuccess);
+  const productEntity = useAppSelector(state => state.gateway.product.entity);
+  const loading = useAppSelector(state => state.gateway.product.loading);
+  const updating = useAppSelector(state => state.gateway.product.updating);
+  const updateSuccess = useAppSelector(state => state.gateway.product.updateSuccess);
 
   const handleClose = () => {
     navigate('/product');
@@ -73,8 +73,8 @@ export const ProductUpdate = () => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="ecommerceGatewayApp.ecommerceProductProduct.home.createOrEditLabel" data-cy="ProductCreateUpdateHeading">
-            <Translate contentKey="ecommerceGatewayApp.ecommerceProductProduct.home.createOrEditLabel">Create or edit a Product</Translate>
+          <h2 id="gatewayApp.ecommerceProductProduct.home.createOrEditLabel" data-cy="ProductCreateUpdateHeading">
+            <Translate contentKey="gatewayApp.ecommerceProductProduct.home.createOrEditLabel">Create or edit a Product</Translate>
           </h2>
         </Col>
       </Row>
@@ -95,28 +95,28 @@ export const ProductUpdate = () => {
                 />
               ) : null}
               <ValidatedField
-                label={translate('ecommerceGatewayApp.ecommerceProductProduct.name')}
+                label={translate('gatewayApp.ecommerceProductProduct.name')}
                 id="product-name"
                 name="name"
                 data-cy="name"
                 type="text"
               />
               <ValidatedField
-                label={translate('ecommerceGatewayApp.ecommerceProductProduct.description')}
+                label={translate('gatewayApp.ecommerceProductProduct.description')}
                 id="product-description"
                 name="description"
                 data-cy="description"
                 type="text"
               />
               <ValidatedField
-                label={translate('ecommerceGatewayApp.ecommerceProductProduct.price')}
+                label={translate('gatewayApp.ecommerceProductProduct.price')}
                 id="product-price"
                 name="price"
                 data-cy="price"
                 type="text"
               />
               <ValidatedField
-                label={translate('ecommerceGatewayApp.ecommerceProductProduct.stock')}
+                label={translate('gatewayApp.ecommerceProductProduct.stock')}
                 id="product-stock"
                 name="stock"
                 data-cy="stock"
