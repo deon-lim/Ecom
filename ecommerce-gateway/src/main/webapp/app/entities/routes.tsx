@@ -12,6 +12,7 @@ import Product from './ecommerceProduct/product';
 import entitiesReducers from './reducers';
 
 import Customer from './customer';
+import Orders from './ecommerceOrder2/order/order';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -23,6 +24,7 @@ export default () => {
         {/* prettier-ignore */}
         <Route path="product/*" element={<Product />} />
         <Route path="customer/*" element={<Customer />} />
+        <Route path="orders/*" element={<Orders />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>
