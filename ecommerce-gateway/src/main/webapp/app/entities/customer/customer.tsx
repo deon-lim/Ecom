@@ -1,3 +1,4 @@
+// src/main/webapp/app/entities/customer/customer.tsx
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
@@ -9,9 +10,15 @@ import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-u
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntities } from './customer.reducer';
+import { Authority } from 'app/shared/constants/authority';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
 
 export const Customer = () => {
   const dispatch = useAppDispatch();
+
+  // grab current user’s authorities and check admin role
+  const authorities = useAppSelector(state => state.authentication.account.authorities);
+  const isAdmin = hasAnyAuthority(authorities, [Authority.ADMIN]);
 
   const pageLocation = useLocation();
   const navigate = useNavigate();
@@ -25,13 +32,16 @@ export const Customer = () => {
   const totalItems = useAppSelector(state => state.gateway.customer.totalItems);
 
   const getAllEntities = () => {
-    dispatch(
-      getEntities({
-        page: paginationState.activePage - 1,
-        size: paginationState.itemsPerPage,
-        sort: `${paginationState.sort},${paginationState.order}`,
-      }),
-    );
+    // only admins get the full list
+    if (isAdmin) {
+      dispatch(
+        getEntities({
+          page: paginationState.activePage - 1,
+          size: paginationState.itemsPerPage,
+          sort: `${paginationState.sort},${paginationState.order}`,
+        }),
+      );
+    }
   };
 
   const sortEntities = () => {
@@ -44,7 +54,7 @@ export const Customer = () => {
 
   useEffect(() => {
     sortEntities();
-  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+  }, [isAdmin, paginationState.activePage, paginationState.order, paginationState.sort]);
 
   useEffect(() => {
     const params = new URLSearchParams(pageLocation.search);
