@@ -20,5 +20,5 @@ export const getGatewayRoutes = createAsyncThunk(
   async () => axios.get<GatewayRoute[]>('management/gateway'),
   {
     serializeError: serializeAxiosError,
-  }
+  },
 );

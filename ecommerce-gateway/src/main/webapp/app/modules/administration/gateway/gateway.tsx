@@ -6,7 +6,6 @@ import { Badge, Button, Table } from 'reactstrap';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getGatewayRoutes } from './gateway.reducer';
 
-
 export const GatewayPage = () => {
   const dispatch = useAppDispatch();
   const isFetching = useAppSelector(state => state.administration.loading);

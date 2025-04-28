@@ -63,11 +63,11 @@ spring:
     gateway:
       routes:
         - id: ecommercecustomer
-          uri: lb://ecommercecustomer              # ← exactly your Consul service name
+          uri: lb://ecommercecustomer # ← exactly your Consul service name
           predicates:
-            - Path=/services/ecommercecustomer/**  # ← no quotes, no ${…}
+            - Path=/services/ecommercecustomer/** # ← no quotes, no ${…}
           filters:
-            - StripPrefix=2               # ← drops "/services/customer"
+            - StripPrefix=2 # ← drops "/services/customer"
 
   data:
     mongodb:
