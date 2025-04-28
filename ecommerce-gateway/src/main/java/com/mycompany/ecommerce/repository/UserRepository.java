@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
  */
 @Repository
 public interface UserRepository extends ReactiveMongoRepository<User, String> {
+    Mono<User> findTopByOrderByCreatedDateDesc();
     Mono<User> findOneByActivationKey(String activationKey);
     Flux<User> findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(Instant dateTime);
     Mono<User> findOneByResetKey(String resetKey);

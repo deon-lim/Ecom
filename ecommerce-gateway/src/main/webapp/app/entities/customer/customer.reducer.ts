@@ -14,7 +14,7 @@ const initialState: EntityState<ICustomer> = {
   updateSuccess: false,
 };
 
-const apiUrl = 'services/customer/api/customers';
+const apiUrl = 'services/ecommercecustomer/api/customers';
 
 // Actions
 
