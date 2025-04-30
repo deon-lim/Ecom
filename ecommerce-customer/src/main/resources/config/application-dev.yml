@@ -29,6 +29,8 @@ management:
       probability: 1.0 # report 100% of traces
 
 spring:
+  application:
+    name: ecommercecustomer
   devtools:
     restart:
       enabled: true
@@ -102,7 +104,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: YWRmNTc0YjQ4Y2NkM2NmOThmYjA1NDMzMDM3ZTIzYmM2MGNkOTRiNTVhMjgyYWYyOGNlZTQ5NzA4ZjFjYmFjM2JiYmMwZjU3NDZhMzE3YTMxZmY3ZGUzOGM5ZWViMTc2YWIwZGI1ZjMyMjliOTMzY2JkZjU2NjAzZTQ4NDUxOWI=
+        base64-secret: YzhmNzI5ZTM0NmUzNGY1MGU2NDMyYmVmZTA5ZDg1ZTNjM2M4MWNjNTRlOTY5MmY3ZTZhMGUwMzU1YmE0M2JlNWEyYTU1OTc3MjYzMzlhMDYwZDFhNzVhNjI1NmM2MGIxM2VlMDIwNWM3MjFjNmIxYzJiYTI3M2E4ODljMjQzMjg=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
