@@ -15,31 +15,29 @@ public class CustomerDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String firstName;
 
-    @NotNull
     private String lastName;
 
     private Instant dateOfBirth;
 
-    @NotNull
+
     private String phoneNumber;
 
-    @NotNull
+
     private String addressLine1;
 
     private String addressLine2;
 
-    @NotNull
+
     private String postalCode;
 
-    @NotNull
+
     private String city;
 
     private String state;
 
-    @NotNull
+
     private String country;
 
     private String preferences;
@@ -57,12 +55,23 @@ public class CustomerDTO implements Serializable {
 
     private Gender gender;
 
+    @NotNull
+    private String email;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {

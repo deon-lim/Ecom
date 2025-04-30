@@ -5,6 +5,8 @@ import com.mycompany.ecommercecustomer.service.CustomerService;
 import com.mycompany.ecommercecustomer.service.dto.CustomerDTO;
 import com.mycompany.ecommercecustomer.web.rest.errors.BadRequestAlertException;
 import com.mycompany.ecommercecustomer.web.rest.errors.InternalServerErrorAlertException;
+import com.mycompany.ecommercecustomer.domain.enumeration.MembershipStatus;
+
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +15,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,10 +50,44 @@ public class CustomerResource {
 
     private final CustomerRepository customerRepository;
 
-
     public CustomerResource(CustomerService customerService, CustomerRepository customerRepository) {
         this.customerService = customerService;
         this.customerRepository = customerRepository;
+    }
+
+    /**
+     * {@code POST  /customers/create-by-user} : Create a new customer with minimal fields.
+     *
+     * @param payload a map containing userId and email.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)}.
+     */
+    @PostMapping("/create-by-user")
+    public ResponseEntity<CustomerDTO> createCustomerFromUserAccount(@RequestBody Map<String, String> payload) throws URISyntaxException {
+        LOG.debug("REST request to create Customer from User account : {}", payload);
+
+        String userId = payload.get("userId");
+        String email = payload.get("email");
+
+        if (userId == null || email == null) {
+            throw new BadRequestAlertException("User ID and Email are required", ENTITY_NAME, "useridemailrequired");
+        }
+
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setUserId(userId);
+        customerDTO.setEmail(email);
+        customerDTO.setLoyaltyPoints(0);
+        customerDTO.setMembershipStatus(MembershipStatus.Bronze);
+
+
+        try {
+            customerDTO = customerService.save(customerDTO);
+        } catch (DataAccessException e) {
+            throw new InternalServerErrorAlertException("Error saving customer", ENTITY_NAME, e.getMessage());
+        }
+
+        return ResponseEntity.created(new URI("/api/customers/" + customerDTO.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, customerDTO.getId().toString()))
+            .body(customerDTO);
     }
 
     /**
