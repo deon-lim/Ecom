@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './order.css';
+import { jwtDecode } from 'jwt-decode';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import { useAppSelector } from 'app/config/store';
+import { Authority } from 'app/shared/constants/authority';
 
 interface Order2Product {
   productId: string;
@@ -17,21 +21,29 @@ interface Order2 {
   order2Products: Order2Product[];
 }
 
+function getSubFromToken(token: string): string | null {
+  try {
+    const decoded = jwtDecode<{ sub: string }>(token);
+    return decoded.sub;
+  } catch (error) {
+    console.error('Failed to decode JWT token:', error);
+    return null;
+  }
+}
+
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<Order2[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const account = useAppSelector(state => state.authentication.account);
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const token = 'your-jwt-token-here'; // JWT token (use actual logic for fetching token)
-        if (!token) {
-          setError('No JWT token found!');
-          return;
-        }
+        const token = localStorage.getItem('authenticationToken');
+        const sub = token ? getSubFromToken(token) : null;
 
-        // Fetch the orders from your API
         const response = await axios.get('http://localhost:8080/services/order2/api/order-2-s', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,7 +51,13 @@ const Orders: React.FC = () => {
         });
 
         if (Array.isArray(response.data)) {
-          setOrders(response.data);
+          const allOrders = response.data;
+          const isAdmin = hasAnyAuthority(account?.authorities ?? [], [Authority.ADMIN]);
+
+          // If not admin, filter orders by account ID
+          const filteredOrders = isAdmin ? allOrders : allOrders.filter(order => order.customerId === account?.id);
+
+          setOrders(filteredOrders);
         } else {
           setError('Invalid data format received from server');
         }
@@ -50,8 +68,10 @@ const Orders: React.FC = () => {
       }
     };
 
-    fetchOrders();
-  }, []);
+    if (account) {
+      fetchOrders();
+    }
+  }, [account]);
 
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
@@ -59,6 +79,7 @@ const Orders: React.FC = () => {
   return (
     <div className="orders-container">
       <h1>Orders</h1>
+
       <table>
         <thead>
           <tr>
