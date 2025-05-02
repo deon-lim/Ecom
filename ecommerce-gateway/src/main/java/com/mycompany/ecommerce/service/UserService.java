@@ -35,6 +35,9 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.data.domain.Pageable;
 
+import reactor.util.retry.Retry;
+import java.time.Duration;
+
 
 /**
  * Service class for managing users.
@@ -50,7 +53,7 @@ public class UserService {
 
   private final AuthorityRepository authorityRepository;
 
-  private final WebClient webClient = WebClient.builder().baseUrl("http://customer-service").build();
+  private final WebClient webClient = WebClient.builder().baseUrl("http://localhost:8083/api/customers").build();
 
   public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
     this.userRepository = userRepository;
@@ -281,13 +284,21 @@ public class UserService {
     customerData.put("userId", user.getId());
     customerData.put("email", user.getEmail());
 
+    LOG.info("🟡 Creating customer profile: {}", customerData); // NEW log
+
     return webClient.post()
       .uri("/api/customers/create-by-user")
       .bodyValue(customerData)
       .retrieve()
       .bodyToMono(Void.class)
-      .onErrorResume(error -> Mono.empty());
+      .timeout(Duration.ofSeconds(5))
+      .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(2)))
+      .doOnError(ex -> LOG.error("❌ Retried customer creation failed for userId={}: {}", user.getId(), ex.getMessage()))
+      .doOnSuccess(res -> LOG.info("✅ Customer profile creation sent for userId={}", user.getId())) // NEW log
+      .onErrorResume(ex -> Mono.empty());
   }
+
+
 
   public Flux<AdminUserDTO> getAllManagedUsers(Pageable pageable) {
     return userRepository.findAllByIdNotNull(pageable).map(AdminUserDTO::new);

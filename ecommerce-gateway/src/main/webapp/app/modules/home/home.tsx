@@ -2,96 +2,68 @@ import './home.scss';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Translate } from 'react-jhipster';
-import { Alert, Col, Row } from 'reactstrap';
-
+import { Col, Row, Button } from 'reactstrap';
 import { useAppSelector } from 'app/config/store';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
 
   return (
-    <Row>
-      <Col md="3" className="pad">
-        <span className="hipster rounded" />
-      </Col>
-      <Col md="9">
-        <h1 className="display-4">
-          <Translate contentKey="home.title">Welcome, Java Hipster!</Translate>
-        </h1>
-        <p className="lead">
-          <Translate contentKey="home.subtitle">This is your homepage</Translate>
-        </p>
-        {account?.login ? (
-          <div>
-            <Alert color="success">
-              <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
-                You are logged in as user {account.login}.
-              </Translate>
-            </Alert>
-          </div>
-        ) : (
-          <div>
-            <Alert color="warning">
-              <Translate contentKey="global.messages.info.authenticated.prefix">If you want to </Translate>
-
-              <Link to="/login" className="alert-link">
-                <Translate contentKey="global.messages.info.authenticated.link"> sign in</Translate>
+    <Row className="home-page align-items-center justify-content-center text-center">
+      <Col md="8">
+        <div className="hero-section">
+          <h1 className="display-3 fw-bold mb-4">Welcome to SwiftCart</h1>
+          <p className="lead mb-4">Discover amazing products tailored to your needs. Sign up and start shopping now!</p>
+          {account?.login ? (
+            <div className="user-greeting">
+              <h4 className="text-success">Hi, {account.login}! Start exploring our store now.</h4>
+              <Link to="/products">
+                <Button color="primary" size="lg" className="mt-3">
+                  Browse Products
+                </Button>
               </Link>
-              <Translate contentKey="global.messages.info.authenticated.suffix">
-                , you can try the default accounts:
-                <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-                <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
-              </Translate>
-            </Alert>
-
-            <Alert color="warning">
-              <Translate contentKey="global.messages.info.register.noaccount">You do not have an account yet?</Translate>&nbsp;
-              <Link to="/account/register" className="alert-link">
-                <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
+            </div>
+          ) : (
+            <div className="auth-buttons">
+              <Link to="/account/register">
+                <Button color="success" size="lg" className="me-3">
+                  Create Account
+                </Button>
               </Link>
-            </Alert>
-          </div>
-        )}
-        <p>
-          <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
-        </p>
-
-        <ul>
-          <li>
-            <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.homepage">JHipster homepage</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.stackoverflow">JHipster on Stack Overflow</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.bugtracker">JHipster bug tracker</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.chat">JHipster public chat room</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.follow">follow @jhipster on Twitter</Translate>
-            </a>
-          </li>
-        </ul>
-
-        <p>
-          <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          !
-        </p>
+              <Link to="/login">
+                <Button color="outline-primary" size="lg">
+                  Login
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
+        <div className="features-section mt-5">
+          <h2 className="mb-4">Why Shop With Us?</h2>
+          <Row>
+            <Col md="4">
+              <div className="feature-box">
+                {/* <img src="/content/images/shipping.svg" alt="Fast Shipping" className="feature-icon" /> */}
+                <h5>Fast Shipping</h5>
+                <p>Next-day delivery available on most products.</p>
+              </div>
+            </Col>
+            <Col md="4">
+              <div className="feature-box">
+                {/* <img src="/content/images/secure.svg" alt="Secure Payment" className="feature-icon" /> */}
+                <h5>Secure Payment</h5>
+                <p>Safe and encrypted checkout experience.</p>
+              </div>
+            </Col>
+            <Col md="4">
+              <div className="feature-box">
+                {/* <img src="/content/images/support.svg" alt="24/7 Support" className="feature-icon" /> */}
+                <h5>24/7 Support</h5>
+                <p>We&apos;re here to help any time, any day.</p>
+              </div>
+            </Col>
+          </Row>
+        </div>
       </Col>
     </Row>
   );

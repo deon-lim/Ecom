@@ -49,6 +49,7 @@ spring:
         format: yaml
         profile-separator: '-'
       discovery:
+        health-check-path: /management/health
         enabled: true
         prefer-ip-address: true
         tags:

@@ -11,9 +11,9 @@ const EntitiesMenu = () => {
       <MenuItem icon="asterisk" to="/product">
         <Translate contentKey="global.menu.entities.ecommerceProductProduct" />
       </MenuItem>
-      <MenuItem icon="asterisk" to="/customer">
+      {/* <MenuItem icon="asterisk" to="/customer">
         <Translate contentKey="global.menu.entities.customer" />
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem icon="asterisk" to="/orders">
         <Translate contentKey="global.menu.entities.orders" />
       </MenuItem>
