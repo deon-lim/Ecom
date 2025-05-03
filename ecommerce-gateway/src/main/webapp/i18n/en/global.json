@@ -10,7 +10,8 @@
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
         "ecommerceProductProduct": "Product",
         "customer": "Customer",
-        "orders": "Orders"
+        "orders": "Orders",
+        "cart": "Cart"
       },
       "account": {
         "main": "Account",
