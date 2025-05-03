@@ -7,30 +7,24 @@ import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons'
 import { ASC, DESC } from 'app/shared/util/pagination.constants';
 import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-
-import { getEntities } from './product.reducer';
+import { useCart } from 'app/context/CartContext'; // Import the cart context
+import { getEntities } from 'app/entities/ecommerceProduct/product/product.reducer'; // Corrected import to getEntities
 
 export const Product = () => {
   const dispatch = useAppDispatch();
-
   const pageLocation = useLocation();
   const navigate = useNavigate();
 
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
-
   const productList = useAppSelector(state => state.gateway.product.entities);
   const loading = useAppSelector(state => state.gateway.product.loading);
+  const { addToCart } = useCart(); // Access the addToCart function from context
 
-  const getAllEntities = () => {
-    dispatch(
-      getEntities({
-        sort: `${sortState.sort},${sortState.order}`,
-      }),
-    );
-  };
+  const [successMessage, setSuccessMessage] = useState<string>(''); // State for the success message
 
   const sortEntities = () => {
-    getAllEntities();
+    const sortParam = `${sortState.sort},${sortState.order}`;
+    dispatch(getEntities({ sort: sortParam })); // Dispatch the action with the correct sort parameter
     const endURL = `?sort=${sortState.sort},${sortState.order}`;
     if (pageLocation.search !== endURL) {
       navigate(`${pageLocation.pathname}${endURL}`);
@@ -41,7 +35,7 @@ export const Product = () => {
     sortEntities();
   }, [sortState.order, sortState.sort]);
 
-  const sort = p => () => {
+  const sort = (p: string) => () => {
     setSortState({
       ...sortState,
       order: sortState.order === ASC ? DESC : ASC,
@@ -62,6 +56,19 @@ export const Product = () => {
     return order === ASC ? faSortUp : faSortDown;
   };
 
+  const handleAddToCart = product => {
+    addToCart({
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1, // Default quantity of 1
+    });
+
+    // Show success message for 2 seconds
+    setSuccessMessage(`${product.name} added to cart!`);
+    setTimeout(() => setSuccessMessage(''), 2000); // Clear the message after 2 seconds
+  };
+
   return (
     <div>
       <h2 id="product-heading" data-cy="ProductHeading">
@@ -78,6 +85,14 @@ export const Product = () => {
           </Link>
         </div>
       </h2>
+
+      {/* Success Message */}
+      {successMessage && (
+        <div className="alert alert-success">
+          <strong>{successMessage}</strong>
+        </div>
+      )}
+
       <div className="table-responsive">
         {productList && productList.length > 0 ? (
           <Table responsive>
@@ -142,6 +157,15 @@ export const Product = () => {
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
                         </span>
+                      </Button>
+                      {/* Add to Cart Button */}
+                      <Button
+                        onClick={() => handleAddToCart(product)} // Check if this is correctly passing the product
+                        color="success"
+                        size="sm"
+                        data-cy="entityAddToCartButton"
+                      >
+                        Add to Cart
                       </Button>
                     </div>
                   </td>

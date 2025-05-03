@@ -26,3 +26,17 @@ Troubleshoot
 netstat -ano | findstr :8500
 taskkill /PID <process_id> /F
 
+Code To Create Product Table in Git Bash
+1. Open docker desktop to check containerID OR use cmd to find containerID
+2. docker exec -it <<containerID>> psql -U ecommerceProduct -d ecommerceProduct
+3. CREATE TABLE product (
+    id SERIAL PRIMARY KEY,
+    description TEXT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    price NUMERIC(10, 2) NOT NULL,
+    stock INTEGER NOT NULL
+);
+4. INSERT INTO product (description, name, price, stock)
+VALUES ('Sample description', 'Sample Product', 19.99, 100);
+5. Check your UI
+

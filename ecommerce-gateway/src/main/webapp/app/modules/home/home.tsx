@@ -17,7 +17,7 @@ export const Home = () => {
           {account?.login ? (
             <div className="user-greeting">
               <h4 className="text-success">Hi, {account.login}! Start exploring our store now.</h4>
-              <Link to="/products">
+              <Link to="/product">
                 <Button color="primary" size="lg" className="mt-3">
                   Browse Products
                 </Button>
