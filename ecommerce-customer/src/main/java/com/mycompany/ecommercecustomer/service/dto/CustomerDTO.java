@@ -14,48 +14,24 @@ import java.util.Objects;
 public class CustomerDTO implements Serializable {
 
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private Instant dateOfBirth;
-
-
     private String phoneNumber;
-
-
     private String addressLine1;
-
     private String addressLine2;
-
-
     private String postalCode;
-
-
     private String city;
-
     private String state;
-
-
     private String country;
-
     private String preferences;
-
     private Integer loyaltyPoints;
-
     private MembershipStatus membershipStatus;
-
     private Instant createdDate;
-
     private Instant lastModifiedDate;
-
     @NotNull
     private String userId;
-
     private Gender gender;
-
-    @NotNull
     private String email;
 
     public Long getId() {
@@ -253,6 +229,7 @@ public class CustomerDTO implements Serializable {
             ", lastModifiedDate='" + getLastModifiedDate() + "'" +
             ", userId='" + getUserId() + "'" +
             ", gender='" + getGender() + "'" +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }

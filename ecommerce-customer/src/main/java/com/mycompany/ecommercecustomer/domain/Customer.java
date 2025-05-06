@@ -23,41 +23,34 @@ public class Customer implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @NotNull
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
     private String firstName;
 
-    @NotNull
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "date_of_birth")
     private Instant dateOfBirth;
 
-    @NotNull
-    @Column(name = "phone_number", nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotNull
-    @Column(name = "address_line_1", nullable = false)
+    @Column(name = "address_line_1")
     private String addressLine1;
 
     @Column(name = "address_line_2")
     private String addressLine2;
 
-    @NotNull
-    @Column(name = "postal_code", nullable = false)
+    @Column(name = "postal_code")
     private String postalCode;
 
-    @NotNull
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
     @Column(name = "state")
     private String state;
 
-    @NotNull
-    @Column(name = "country", nullable = false)
+    @Column(name = "country")
     private String country;
 
     @Column(name = "preferences")
@@ -79,6 +72,10 @@ public class Customer implements Serializable {
     @NotNull
     @Column(name = "user_id", nullable = false)
     private String userId;
+
+    @NotNull
+    @Column(name = "email")
+    private String email;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
@@ -307,6 +304,19 @@ public class Customer implements Serializable {
         this.userId = userId;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Customer email(String email) {
+        this.setEmail(email);
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Gender getGender() {
         return this.gender;
     }
@@ -361,6 +371,7 @@ public class Customer implements Serializable {
             ", lastModifiedDate='" + getLastModifiedDate() + "'" +
             ", userId='" + getUserId() + "'" +
             ", gender='" + getGender() + "'" +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }
