@@ -23,7 +23,7 @@ jobs:
       matrix:
         service:
           - ecommerce-customer
-          - ecommerce-gateway
+         # - ecommerce-gateway
           - ecommerce-order
           - ecommerce-order2
           - ecommerce-product
