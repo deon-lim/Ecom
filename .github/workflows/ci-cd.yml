@@ -24,8 +24,8 @@ jobs:
         service:
           - ecommerce-customer
          # - ecommerce-gateway
-          - ecommerce-order
-          - ecommerce-order2
+         # - ecommerce-order
+         # - ecommerce-order2
          # - ecommerce-product
 
     steps:
